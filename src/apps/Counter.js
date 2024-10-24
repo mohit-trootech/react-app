@@ -1,6 +1,7 @@
+/**Counter App to eloborate the working of useState */
 import { useState } from "react";
 import { FaPlus, FaMinus } from "react-icons/fa";
-function UseStateDemo() {
+function Counter() {
   const [counter, setCounter] = useState(0);
 
   return (
@@ -38,4 +39,4 @@ function UseStateDemo() {
   );
 }
 
-export default UseStateDemo;
+export default Counter;
