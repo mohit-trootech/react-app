@@ -15,7 +15,7 @@ function AlertToast({ message }) {
   return (
     <>
       <div className="fixed top-0 right-0 p-5">
-        <div role="alert" className="alert" id="alert">
+        <div role="alert" className="alert flex" id="alert">
           <RiInformation2Line className="text-info text-2xl" />
           <span>{message}</span>
           <div>

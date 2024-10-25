@@ -54,6 +54,7 @@ function UpdateTodoOffCanva({ todo, updateTodo }) {
               <label
                 htmlFor={"my-drawer-" + todo.id}
                 aria-label="close sidebar"
+                className="w-full h-full flex items-center justify-center"
               >
                 Update
               </label>
