@@ -1,4 +1,4 @@
-/**Todos Component for Todos API */
+/**Todos App for Todos API */
 import axios from "axios";
 import { useState, useEffect } from "react";
 import AlertToast from "../components/AlertToast";
@@ -11,7 +11,7 @@ function Todos() {
   const [error, setError] = useState(null);
   const [nextPageUrl, setNextPageUrl] = useState(null);
   const [previousPageUrl, setPreviousPageUrl] = useState(null);
-  const fetchTodos = async (url = contants.todosUrl) => {
+  const fetchTodos = async (url) => {
     try {
       const res = await axios.get(url);
       setTodos(res.data.results);
@@ -24,9 +24,8 @@ function Todos() {
   };
 
   useEffect(() => {
-    fetchTodos();
+    fetchTodos(contants.todosUrl);
   }, []);
-  console.log(todos);
   const handlePreviousPage = () => {
     if (previousPageUrl) {
       fetchTodos(previousPageUrl);
@@ -39,6 +38,35 @@ function Todos() {
     }
   };
 
+  const deleteTodo = async (id) => {
+    try {
+      await axios.delete(`${contants.todosUrl}${id}/`);
+      setTodos(
+        todos.filter((todo) => {
+          return todo.id !== id;
+        })
+      );
+    } catch (error) {
+      console.error("Error deleting todo:", error);
+    }
+  };
+
+  const updateTodo = async (id, updatedTodo) => {
+    try {
+      const updatedtodo = await axios.patch(
+        `${contants.todosUrl}${id}/`,
+        updatedTodo
+      );
+      setTodos((prevTodos) =>
+        prevTodos.map((todo) => {
+          return todo.id === id ? updatedtodo.data : todo;
+        })
+      );
+    } catch (error) {
+      console.error("Error updating todo:", error);
+    }
+  };
+
   return (
     <>
       {error ? (
@@ -46,9 +74,14 @@ function Todos() {
       ) : (
         <>
           <div className="container mx-auto">
-            <ListTodos todos={todos} />
+            <ListTodos
+              todos={todos}
+              key={todos.id}
+              deleteTodo={deleteTodo}
+              updateTodo={updateTodo}
+            />
             <div className="flex justify-end">
-              <div className="join grid grid-cols-2">
+              <div className="join grid grid-cols-2 my-5">
                 <button
                   className="join-item btn btn-outline"
                   disabled={!previousPageUrl}

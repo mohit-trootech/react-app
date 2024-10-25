@@ -41,6 +41,9 @@ function NavBar() {
                 <a href="/todos">Todos</a>
               </li>
               <li>
+                <a href="/todo-create">Create</a>
+              </li>
+              <li>
                 <a href="/about">About</a>
               </li>
             </ul>

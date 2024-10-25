@@ -3,7 +3,7 @@ function Home() {
   /**Home Page with DaisyUI */
   return (
     <>
-      <button className="btn btn-primary">Home</button>
+      <button className="btn btn-primary text-center mx-auto">Home</button>
     </>
   );
 }

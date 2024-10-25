@@ -35,7 +35,10 @@ const themes = [
   "nord",
   "sunset",
 ];
+const todosUrl = "http://127.0.0.1:8000/api/todos/" + window.location.search;
+const constants = {
+  themes,
+  todosUrl,
+};
 
-const todosUrl = ["http://127.0.0.1:8000/api/todos/"];
-
-export default { themes, todosUrl };
+export default constants;

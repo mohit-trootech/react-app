@@ -10,4 +10,8 @@ const getLocalStorage = (key) => {
   return window.localStorage.getItem(key);
 };
 
-export default { updateLocalStorage, getLocalStorage };
+const utils = {
+  updateLocalStorage,
+  getLocalStorage,
+};
+export default utils;
