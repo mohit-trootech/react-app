@@ -15,7 +15,7 @@ function ListTodos({ todos, deleteTodo, updateTodo }) {
   return (
     <>
       {isLoading ? (
-        <div className="flex justify-center items-center">
+        <div className="flex justify-center items-center cursor-progress">
           <p className="loading loading-bars loading-lg text-primary"></p>
         </div>
       ) : todos.length ? (

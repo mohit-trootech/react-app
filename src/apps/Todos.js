@@ -5,15 +5,21 @@ import AlertToast from "../components/AlertToast";
 import "../utils/contants";
 import ListTodos from "../apps/ListTodos";
 import contants from "../utils/contants";
+import FilterTodos from "../apps/Filter";
 
 function Todos() {
+  const [modified, setModified] = useState("-modified");
+  const [created, setCreated] = useState("-created");
+  const [q, setQ] = useState("");
   const [todos, setTodos] = useState([]);
   const [error, setError] = useState(null);
   const [nextPageUrl, setNextPageUrl] = useState(null);
   const [previousPageUrl, setPreviousPageUrl] = useState(null);
-  const fetchTodos = async (url) => {
+
+  /**Fetch Todos */
+  const fetchTodos = async (url, params) => {
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url, { params: params });
       setTodos(res.data.results);
       setNextPageUrl(res.data.next);
       setPreviousPageUrl(res.data.previous);
@@ -53,13 +59,13 @@ function Todos() {
 
   const updateTodo = async (id, updatedTodo) => {
     try {
-      const updatedtodo = await axios.patch(
+      const response = await axios.patch(
         `${contants.todosUrl}${id}/`,
         updatedTodo
       );
       setTodos((prevTodos) =>
         prevTodos.map((todo) => {
-          return todo.id === id ? updatedtodo.data : todo;
+          return todo.id === id ? response.data : todo;
         })
       );
     } catch (error) {
@@ -74,6 +80,16 @@ function Todos() {
       ) : (
         <>
           <div className="container mx-auto">
+            <FilterTodos
+              fetchTodos={fetchTodos}
+              setTodos={setTodos}
+              setModified={setModified}
+              setCreated={setCreated}
+              setQ={setQ}
+              modified={modified}
+              created={created}
+              q={q}
+            />
             <ListTodos
               todos={todos}
               key={todos.id}

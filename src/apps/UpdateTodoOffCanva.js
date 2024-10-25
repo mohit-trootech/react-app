@@ -51,7 +51,12 @@ function UpdateTodoOffCanva({ todo, updateTodo }) {
               defaultValue={todo.description}
             ></textarea>
             <button type="submit" className="w-full btn btn-primary mt-3">
-              Update
+              <label
+                htmlFor={"my-drawer-" + todo.id}
+                aria-label="close sidebar"
+              >
+                Update
+              </label>
             </button>
           </form>
         </div>
