@@ -12,8 +12,8 @@ function FilterTodos({
 }) {
   /**Filter Todo Component */
   const modifiedValues = {
-    "Latest Updated": "-modified",
-    "Oldest Updated": "modified",
+    "Latest Updated": "modified",
+    "Oldest Updated": "-modified",
   };
   const createdValues = {
     Newest: "-created",

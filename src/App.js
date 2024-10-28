@@ -7,22 +7,27 @@ import Footer from "./components/Footer";
 import Home from "./Home";
 import CreateTodo from "./apps/CreateTodo";
 import Todos from "./apps/Todos";
-
+import ThemeProvider from "./providers/ThemeProvider";
+import Calculator from "./apps/Calculator";
+import CalculatorProvider from "./providers/CalculatorProvider";
 function App() {
   return (
-    <BrowserRouter>
-      <NavBar />
-      <div className="min-h-screen">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/counter" element={<Counter />} />
-          <Route path="/todos" element={<Todos />} />
-          <Route path="/todo-create" element={<CreateTodo />} />
-          <Route path="*" element={<NoPage />} />
-        </Routes>
-      </div>
-      <Footer />
-    </BrowserRouter>
+    <ThemeProvider>
+      <CalculatorProvider>
+        <BrowserRouter>
+          <NavBar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/counter" element={<Counter />} />
+            <Route path="/calculator" element={<Calculator />} />
+            <Route path="/todos" element={<Todos />} />
+            <Route path="/create-todo" element={<CreateTodo />} />
+            <Route path="*" element={<NoPage />} />
+          </Routes>
+          <Footer />
+        </BrowserRouter>
+      </CalculatorProvider>
+    </ThemeProvider>
   );
 }
 

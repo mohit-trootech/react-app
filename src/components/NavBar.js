@@ -1,20 +1,17 @@
 /**Nav Bar Component Using Tailwind CSS */
 import { FaReact } from "react-icons/fa";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Options from "./ThemeOptions";
-import utils from "../utils/utils";
+import { useContext } from "react";
+import Context from "../context/Contexts";
+
 function NavBar() {
   /**NavBar DaisyUI Component */
-  let [theme, setTheme] = useState(utils.getLocalStorage("theme") || "light");
-
+  const { theme, updateTheme } = useContext(Context.ThemeContext);
   useEffect(() => {
     document.querySelector("body").setAttribute("data-theme", theme);
   }, [theme]);
 
-  const updateTheme = (event) => {
-    setTheme((theme = event.target.value));
-    utils.updateLocalStorage("theme", theme);
-  };
   return (
     <>
       <div className="navbar bg-base-100">
@@ -36,6 +33,9 @@ function NavBar() {
               </li>
               <li>
                 <a href="/counter">Counter</a>
+              </li>
+              <li>
+                <a href="/calculator">Calculator</a>
               </li>
               <li>
                 <a href="/todos">Todos</a>
